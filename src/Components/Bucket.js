@@ -13,11 +13,11 @@ const Bucket = () => {
     const [headerselectedOption,headersetSelectedOption]=useState("Grant Access");
     const [selectedOption, setSelectedOption] = useState('Access');
     const access_token=localStorage.getItem('access_token');
+    const roles= JSON.parse(localStorage.getItem('roles'));
     
     useEffect(()=>{
-     const roles= JSON.parse(localStorage.getItem('roles'));
      
-     console.log(access_token);
+     
      if(!access_token){
          navigate('/');
          return;
@@ -41,6 +41,9 @@ const Bucket = () => {
         case "Create Bucket":
         setBucket_page(true);
         break;
+        case "Home":
+          navigate("/Home")
+          break;
         case "Sign Out":
           navigate('/');
           localStorage.clear();

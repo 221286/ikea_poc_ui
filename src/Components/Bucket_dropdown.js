@@ -17,7 +17,7 @@ const Bucket_dropdown = ({headerselectedOption,headersetSelectedOption}) => {
             onChange={handleOptionChange}
             className="block appearance-none hover:cursor-pointer w-full bg-yellow-200 border border-gray-300 px-4 py-2 pr-8 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           >
-            
+            <option value="Home">Home</option>
             <option value="Grant Access">Grant Access</option>
             <option value="Create Bucket">Create Bucket</option>
             <option value="Sign Out">Sign Out</option>
