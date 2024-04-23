@@ -35,13 +35,13 @@ const Login_Page = () => {
       'accept': '*/*',
       'Content-Type': 'application/json'
       }});
-      console.log();
        // const response = await axios.get('http://54.198.138.169:7000/swagger-ui/index.html#/Profile%20Controller/minio');
         
 
-      const {access_token,}=response?.data?.data;
+      const {access_token,username}=response?.data?.data;
       localStorage.setItem('access_token',access_token);
       localStorage.setItem('roles',JSON.stringify(response?.data?.data?.roles[0]));
+      localStorage.setItem('username',JSON.stringify(username));
       navigate('/Home');
 
       //console.log(data?.data[0]?.access_token);
