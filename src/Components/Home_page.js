@@ -37,7 +37,7 @@ navigate('/');
                 Logout
                 <div className='w-1/3 p-3 bg-yellow-800'><Barchart></Barchart> </div>
   </button>*/}
-  <h1 className='text-xl font-extrabold shadow-lg text-center'>Welcome to dashboard <span className='text-green-700'>{user_name?.toUpperCase()}</span> </h1>
+  <h1 className='text-4xl font-extrabold shadow-lg text-center'>Welcome to dashboard <span className='text-green-700'>{user_name?.toUpperCase()}</span> </h1>
   <Dashboard></Dashboard>
   
    
