@@ -70,7 +70,7 @@ const Bucket = () => {
       };
       
       /*end point:54.198.138.169*/
-      const url = `http://127.0.0.1:7000/bucket/access?bucket_name=${bucketName}&user_name=${userName}&access_type=${selectedOption}`;
+      const url = `http://54.198.138.169:7000/bucket/access?bucket_name=${bucketName}&user_name=${userName}&access_type=${selectedOption}`;
       
       
       // Request headers

@@ -30,18 +30,18 @@ const Login_Page = () => {
 
 
       /* endpoint:54.198.138.169 */
-      const response=await axios.post('http://127.0.0.1:7000/auth/login', postData, {
+      const response=await axios.post('http://54.198.138.169:7000/auth/login', postData, {
       headers: {
       'accept': '*/*',
       'Content-Type': 'application/json'
       }});
+      console.log();
        // const response = await axios.get('http://54.198.138.169:7000/swagger-ui/index.html#/Profile%20Controller/minio');
         
 
-      const data=await response?.data;
-      const {access_token}=data?.data[0];
+      const {access_token,}=response?.data?.data;
       localStorage.setItem('access_token',access_token);
-      localStorage.setItem('roles',JSON.stringify(data?.data[0]?.roles[0]));
+      localStorage.setItem('roles',JSON.stringify(response?.data?.data?.roles[0]));
       navigate('/Home');
 
       //console.log(data?.data[0]?.access_token);

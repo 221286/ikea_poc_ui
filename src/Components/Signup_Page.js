@@ -30,12 +30,13 @@ const Signup_Page = () => {
       };
 
      /*endpoint:54.198.138.169   */
-     const response=await axios.post('http://127.0.0.1:7000/auth/register', Signupdata, {
+     const response=await axios.post('http://54.198.138.169:7000/auth/register', Signupdata, {
      headers: {
      'accept': '*/*',
      'Content-Type': 'application/json'
      }
     })
+    console.log(response.data.status);
     if(response.data.status===200){
 navigate('/');
     }

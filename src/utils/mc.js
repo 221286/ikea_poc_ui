@@ -5,7 +5,7 @@ import * as Minio from "minio";
   // Instantiate the minio client with the endpoint
   // and access keys as shown below.
   const mc= new Minio.Client({ 
-    endPoint: "127.0.0.1",/**localhost127.0.0.1 */
+    endPoint: "54.198.138.169",/**localhost127.0.0.1 */
     port: 9000,
     useSSL: false,
     accessKey: 'admin',

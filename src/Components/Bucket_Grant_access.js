@@ -33,8 +33,8 @@ const Bucket_Grant_access = ({handleSubmit,bucketNameRef,selectedOption,setSelec
                   defaultValue={selectedOption}
                   onChange={(e) => setSelectedOption(e.target.value)}
                 >
-                  <option value="GRANT">Access</option>
-                  <option value="REVOKE">Revoke</option>
+                  <option value="GRANT">GRANT</option>
+                  <option value="REVOKE">REVOKE</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                   <svg className="w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
