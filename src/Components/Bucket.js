@@ -11,7 +11,7 @@ const Bucket = () => {
     const navigate=useNavigate();
     const [Bucket_page,setBucket_page]=useState(false);
     const [headerselectedOption,headersetSelectedOption]=useState("Grant Access");
-    const [selectedOption, setSelectedOption] = useState('Access');
+    const [selectedOption, setSelectedOption] = useState('GRANT');
     const access_token=localStorage.getItem('access_token');
     const roles= JSON.parse(localStorage.getItem('roles'));
     
@@ -19,12 +19,12 @@ const Bucket = () => {
      
      
      if(!access_token){
-         navigate('/');
+         navigate('/Login');
          return;
 
 
      } else if(roles!='ADMIN'){
-        navigate('/Home');
+        navigate('/');
         return;
      }
 
@@ -45,7 +45,7 @@ const Bucket = () => {
           navigate("/Home")
           break;
         case "Sign Out":
-          navigate('/');
+          navigate('/Login');
           localStorage.clear();
           return;
 

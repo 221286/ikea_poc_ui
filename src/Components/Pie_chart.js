@@ -40,7 +40,7 @@ const Pie_chart = ({data_by_content_type}) => {
       const options={}
   return (
     <div className='w-1/3 border  border-black p-4'>
-        <h2 className='text-2xl'>Content Size</h2>
+        <h2 className='text-2xl'>Analysis of Usage by Content Size</h2>
       <Pie data={data} options={options}></Pie>
     </div>
   )

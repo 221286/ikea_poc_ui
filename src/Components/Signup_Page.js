@@ -38,7 +38,7 @@ const Signup_Page = () => {
     })
     console.log(response.data.status);
     if(response.data.status===200){
-navigate('/');
+navigate('/Login');
     }
     console.log(response.data.status);
     }catch(err){

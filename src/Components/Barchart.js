@@ -50,7 +50,7 @@ const Barchart = ({data_by_content_size}) => {
 
   return (
     <div className='w-1/3 border  border-black p-4'>
-      <h2 className='text-2xl'>Content Type</h2>
+      <h2 className='text-2xl'>Analysis of Usage by Content Size</h2>
       <Bar data={data} options={options} />
     </div>
   );

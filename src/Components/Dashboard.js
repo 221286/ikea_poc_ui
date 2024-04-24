@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Barchart from './Barchart';
 import Pie_chart from './Pie_chart';
+import { Link } from 'react-router-dom';
 const Dashboard = () => {
     const [dashboarddata,setdashboarddata]=useState([]);
     const [user,getuser]=useState(" ");
@@ -31,13 +32,16 @@ return (
         const {data_by_content_size,data_by_content_type,bucket_name,total_data_stored}=content;
         return (<div className='w-full p-4 rounded-2xl shadow-2xl   bg-white m-5 ' key={bucket_name}>
             <h1 className='text-4xl text-center font-extrabold'>{bucket_name?.toUpperCase()}</h1>
-               {
+               { <Link to={`/Contents/${bucket_name}`}>
                <div className='flex justify-between '>
                <Barchart data_by_content_size={data_by_content_size}></Barchart> 
                <Pie_chart data_by_content_type={data_by_content_type}></Pie_chart>
                
                
-    </div> } 
+    </div> 
+
+               </Link>
+           } 
     <h1 className='text-xl text-center font-extrabold'>Total Data Stored: {total_data_stored}</h1>
         </div>)
     })}

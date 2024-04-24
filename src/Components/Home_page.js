@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import Dashboard from './Dashboard';
 import Home_Head_dropdown from './Home_Head_dropdown';
 
@@ -19,14 +19,14 @@ useEffect(()=>{
 //console.log(access_token);
 //Redirecting to login Page if access token is not found
 if(!access_token){
- navigate('/');
+ navigate('/Login');
                  }
 
                 },[][navigate]);
 
 const handleLogout=()=>{
 localStorage.clear();
-navigate('/');
+navigate('/Login');
     
                  }
 
@@ -38,7 +38,7 @@ switch(homeselection){
   navigate("/Bucket");
   break;
   case "Sign Out":
-    navigate('/');
+    navigate('/Login');
     localStorage.clear();
     return;
     break;
@@ -65,10 +65,9 @@ switch(homeselection){
                 Logout
                 <div className='w-1/3 p-3 bg-yellow-800'><Barchart></Barchart> </div>
   </button>*/}
-  <h1 className='text-4xl font-extrabold shadow-lg text-center'>Welcome to dashboard <span className='text-green-700'>{user_name?.toUpperCase()}</span> </h1>
-  <Dashboard></Dashboard>
   
-   
+  
+   <Outlet/>
         </div>
 
     </>

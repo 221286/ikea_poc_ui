@@ -2,10 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login_Page from "./Components/Login_Page";
 import Signup_Page from "./Components/Signup_Page";
 import Home_page from "./Components/Home_page";
-import * as Minio from "minio";
 import { useEffect} from "react";
 import Bucket from "./Components/Bucket";
 import mc from "./utils/mc";
+import Content_typepage from "./Components/Content_typepage";
+import Home_body from "./Components/Home_body";
+
 
 
 
@@ -29,24 +31,7 @@ const getbucketlist=async()=>{
   }
 }
 
-const metaData = {
-  'Content-Type': 'image/jpeg',
-  'X-Amz-Meta-Testing': '1234',
-  example: '5678'
-}
-const uploadFile=async()=>{
-  try{
-    mc.putObject('juice-test','token_1.jpeg',"./token_1.jpeg",metaData,function(err,response){
-      if(err){
-        console.log("error in uploading the file",err)
-      } else{
-        console.log("image uploaded successfully:",response)
-      }
-    })
-  }catch(err){
-    console.log(err);
-  }
-}
+
 
 
 function App() {
@@ -57,25 +42,40 @@ useEffect(()=>{
 
   //uploadFile();
  //createBucket('ikea');
- getbucketlist();
+ //getbucketlist();
  
-})
+},[])
   /**Configuring router with dependencies */
   const route=createBrowserRouter([{
-    path:"/",
-    element:<Login_Page></Login_Page>
-  },{
-    path:"/signup",
-    element:<Signup_Page></Signup_Page>
-  },
-  {
-    path:"/Bucket",
-    element:<Bucket></Bucket>
+  path:"/",
+  element:<Home_page></Home_page>,
+  children:[{
+    path:"/Home",
+    element:<Home_body></Home_body>
   },
 {
-  path:"/Home",
-  element:<Home_page></Home_page>
-}])
+  path:"/Contents/:bucketname",
+  element:<Content_typepage></Content_typepage>
+}]
+  },{
+  path:"/signup",
+  element:<Signup_Page></Signup_Page>
+  },
+  {
+  path:"/Bucket",
+  element:<Bucket></Bucket>
+  },
+{
+  path:"/Login",
+  element:<Login_Page></Login_Page>,
+},
+    {
+      path:"/Contenttypes/:bucketname",
+      element:<Content_typepage></Content_typepage>,
+    }
+  
+,
+])
   return (
     <div className="w-full h-full ">
       

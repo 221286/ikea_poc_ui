@@ -8,7 +8,6 @@ const Bucket_create = () => {
 
     const handle_creatbucket = (e) => {
         e.preventDefault();
-        console.log("Bucketname:", createbucketref.current.value);
         createBucket();
     };
 
