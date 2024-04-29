@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-
 import fileSystemLogo from "../assets/logo.png";
+import { axiosInstanceNoAuth } from "../api/axiosInstance";
+import Button from "./Button";
+import Toast from "./Toast";
 
 const LoginPage = () => {
   const emailref = useRef(null);
@@ -25,40 +26,25 @@ const LoginPage = () => {
       setIsLoading(true);
       try {
         const postData = {
-          // Specify any data to be sent in the request body
-          //'GodUser#123'
-          //'god_user'
-
           username: emailref.current.value,
           password: passwordref.current.value,
         };
 
-        /* endpoint:54.198.138.169 */
-        const response = await axios.post(
-          `${process.env.REACT_APP_BASE_API_URL}auth/login`,
-          postData,
-          {
-            headers: {
-              accept: "*/*",
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        // const response = await axios.get('http://54.198.138.169:7000/swagger-ui/index.html#/Profile%20Controller/minio');
+        const response = await axiosInstanceNoAuth.post("auth/login", postData);
 
         const { access_token, username } = response?.data?.data;
         localStorage.setItem("access_token", access_token);
-        localStorage.setItem(
-          "roles",
-          JSON.stringify(response?.data?.data?.roles[0])
-        );
+        localStorage.setItem("roles", response?.data?.data?.roles[0]);
         localStorage.setItem("username", JSON.stringify(username));
         navigate("/home");
 
-        //console.log(data?.data[0]?.access_token);
       } catch (err) {
         setIsLoading(false);
         console.error(err);
+        Toast({
+          type: "success",
+          message: err.response?.message ?? "Something went wrong",
+        });
       }
     } else {
       // handle if no username and password are not priovided
@@ -68,7 +54,6 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-primary-50">
       <div className="w-5/6 max-w-[640px]">
-        {" "}
         <div className="w-3/5 m-auto mb-12">
           <img src={fileSystemLogo} alt="logo" className="h-auto max-w-full" />
         </div>
@@ -76,7 +61,9 @@ const LoginPage = () => {
           File System POC
         </h1> */}
         <div className="px-6 py-8 overflow-hidden bg-white border border-gray-300 rounded-lg">
-          <div className={`p-4 text-center text-3xl font-bold text-gray-800`}>
+          <div
+            className={`p-4 pt-0 text-center text-3xl font-bold text-gray-800`}
+          >
             <h3>Login</h3>
           </div>
           <form
@@ -103,7 +90,7 @@ const LoginPage = () => {
                   type="text"
                   autoComplete="email"
                   required
-                  className="block max-h-10 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-md text-gray-900 shadow-sm disabled:cursor-not-allowed"
+                  className="block max-h-10 w-full rounded-md border border-gray-300 bg-primary-50 p-2.5 text-md text-gray-900 shadow-sm disabled:cursor-not-allowed"
                 />{" "}
                 {/* Increased py value */}
               </div>
@@ -134,28 +121,27 @@ const LoginPage = () => {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block max-h-10 w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-md text-gray-900 shadow-sm disabled:cursor-not-allowed"
+                  className="block max-h-10 w-full rounded-md border border-gray-300 bg-primary-50 p-2.5 text-md text-gray-900 shadow-sm disabled:cursor-not-allowed"
                 />{" "}
                 {/* Increased py value */}
               </div>
             </div>
 
-            <div>
-              <button
-                type="submit"
-                className="flex justify-center w-full px-3 py-2 text-sm font-semibold leading-6 text-white rounded-md shadow-sm disabled:bg-primary disabled:cursor-not-allowed bg-primary-600 hover:bg-primary-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                disabled={isLoading}
-              >
-                {isLoading ? "Signing" : "Sign"} In
-              </button>{" "}
-              {/* Increased py value */}
-            </div>
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              className="w-full mt-4"
+              disabled={isLoading}
+            >
+              {isLoading ? "Signing" : "Sign"} In
+            </Button>
           </form>
 
           <p className="mt-10 text-sm text-center text-gray-500">
             Not a member?
             <Link
-              // to={"/signup"}
+              to={"/signup"}
               className="font-semibold leading-6 text-primary-700 hover:underline"
             >
               {" "}

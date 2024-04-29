@@ -4,13 +4,10 @@ import {
   useReactTable,
   flexRender,
   getCoreRowModel,
-  // getPaginationRowModel,
   getSortedRowModel,
-  // getFilteredRowModel,
 } from "@tanstack/react-table";
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 
-// import ReportNotFound from "../../pages/Campaign/CampaignReporting/ReportNotFound";
 import Loader from "../components/Loader";
 import "./index.css";
 
@@ -18,38 +15,19 @@ const Table = (props) => {
   const { rowsData, columns, loading = false, onRowClick } = props;
   const data = useMemo(() => rowsData ?? [], [rowsData]);
 
-  // const rowsPerPage = [5, 10];
 
   const [sorting, setSorting] = useState([]);
-  // const [filtering, setFiltering] = useState("");
 
   const tableInstance = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    // getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
-    // getFilteredRowModel: getFilteredRowModel(),
-    // initialState: {
-    //   pagination: {
-    //     pageSize: 5,
-    //   },
-    // },
     state: {
       sorting: sorting,
-      // globalFilter: filtering,
     },
     onSortingChange: setSorting,
-    // onGlobalFilterChange: setFiltering,
   });
-
-  // Emit the sorted list to the table component
-  //   if (handleTableData) {
-  //     const sortedData = tableInstance
-  //       .getSortedRowModel()
-  //       .rows?.map((row) => row.original);
-  //     handleTableData(sortedData);
-  //   }
 
   return loading ? (
     <div className="mt-5">
@@ -132,26 +110,37 @@ const Table = (props) => {
           </thead>
 
           <tbody className="font-semibold text-gray-600">
-            {tableInstance.getRowModel().rows.map((row) => (
-              <tr
-                key={row.id}
-                className={classnames("border-bottom hover:bg-accent-50", {
-                  "cursor-pointer": onRowClick,
-                })}
-                onClick={onRowClick ? () => onRowClick(row?.original) : null}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className={classnames("p-3", {
-                      "cursor-pointer": onRowClick,
-                    })}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+            {tableInstance.getRowModel().rows?.length ? (
+              tableInstance.getRowModel().rows.map((row) => (
+                <tr
+                  key={row.id}
+                  className={classnames("border-bottom hover:bg-accent-50", {
+                    "cursor-pointer": onRowClick,
+                  })}
+                  onClick={onRowClick ? () => onRowClick(row?.original) : null}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className={classnames("p-3", {
+                        "cursor-pointer": onRowClick,
+                      })}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5} className="text-center py-28">
+                  No data
+                </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

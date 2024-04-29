@@ -1,5 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import { formatFileSize } from "../../utils/commonUtils";
 
 // import { ChartLoader, NoDataFound } from "@/components";
 
@@ -70,7 +71,7 @@ const PieChart = ({ labels, values, title, isLoading }) => {
             const percentageValue = parseFloat(
               ((context?.raw / totalValue) * 100).toFixed(1)
             );
-            return context?.raw + " (" + percentageValue + "%)";
+            return formatFileSize(context?.raw) + " (" + percentageValue + "%)";
           },
         },
       },

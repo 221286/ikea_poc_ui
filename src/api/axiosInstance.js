@@ -5,7 +5,7 @@ const headers = {
 };
 export const axiosInstanceNoAuth = axios.create({
   baseURL: process.env.REACT_APP_BASE_API_URL,
-  timeout: 5000,
+  // timeout: 5000,
   headers: {
     ...headers,
   },

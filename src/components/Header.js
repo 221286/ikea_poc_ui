@@ -16,13 +16,8 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between w-full h-16 px-10 py-2 border-b bg-primary-300 border-grey-200">
-      {/* <div className="text-lg text-primary-950 lg:text-2xl">
-        <h4>File System POC</h4>
-      </div> */}
       <div className="block h-auto max-w-full w-28">
-        {/* <Link to="/overview"> */}
         <img src={fileSystemLogo} alt="logo" />
-        {/* </Link> */}
       </div>
       <div className="relative ml-3 md:ml-auto">
         <div>
@@ -37,11 +32,6 @@ const Header = () => {
             <div className="w-full p-1 border rounded-full border-primary-950">
               <UserOutlined />
             </div>
-            {/* <span className="font-semibold">
-            {user?.firstName || user?.lastName
-                ? `${user?.firstName ?? ""} ${user?.lastName ?? ""}`
-                : "User"}
-            </span> */}
             <svg
               className={`h-5 w-5 ${
                 isPopoverOpen ? "rotate-180 transform" : "rotate-0 transform"

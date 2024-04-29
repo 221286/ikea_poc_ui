@@ -17,8 +17,6 @@ function createData(
   return { name, calories, fat, carbs, protein };
 }
 
-
-
 export default function BasicTable({get}) {
   
   if (!get || !get[0]) {
