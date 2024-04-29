@@ -1,3 +1,157 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Reset styles */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* Box sizing */
+/* html {
+  box-sizing: border-box;
+} */
+
+*,
+*:before,
+*:after {
+  /* box-sizing: inherit; */
+  box-sizing: border-box;
+}
+
+/* Typography */
+body {
+  font-family: "Nunito", sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
+}
+
+/* form fields */
+input,
+select,
+textarea {
+  outline: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+table,
+table th,
+table td {
+  cursor: default;
+}
+
+table {
+  table-layout: fixed; /* or auto */
+  border-collapse: collapse;
+}
+
+/* Layout */
+.custom-container {
+  width: 96%;
+  /* max-width: 1620px; */
+  margin: 0 auto;
+}
+
+.container-card {
+  /* @apply py-2 h-[calc(100vh_-_4rem_-_2.5rem)] overflow-hidden; */
+}
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  @apply w-2 rounded-md;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-primary-100;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-300;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary;
+}
+
+/* input- password eye icon */
+/* Hide the eye icon for password input fields */
+/* input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-contacts-auto-fill-button,
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-textfield-decoration-container {
+  display: none;
+} */
+
+/* arrows for number input */
+/* Hide the number input arrows for all browsers */
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  appearance: none; /* Standard */
+}
+
+/* Additional styling for Firefox */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Additional styling for Edge */
+@supports (-ms-ime-align: auto) {
+  input[type="number"] {
+    -webkit-appearance: textfield;
+  }
+}
+
+/* input[type="text"],
+textarea {
+  background: #d1d1d1 !important;
+} */
+
+.horizontal-line {
+  border-top: 1px solid #455a64;
+  margin: 38px 0;
+}

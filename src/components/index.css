@@ -1,0 +1,26 @@
+.scrollable-table-container {
+  /* max-height: 450px;
+    overflow-y: auto; */
+}
+
+.scrollable-table {
+  min-width: 100%;
+  /* border-collapse: collapse; */
+  /* table-layout: fixed; */
+}
+
+.scrollable-table th {
+  z-index: 20;
+  /* @apply bg- */
+}
+
+.scrollable-table th:hover {
+  /* @apply bg-primary-200 */
+}
+
+.pagination-btn,
+.pagination-btn:hover {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
